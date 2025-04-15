@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alfresco Cafe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+       :root {
+    --primary-color: #4e342e;       /* Dark Brown */
+    --secondary-color: #6d4c41;     /* Medium Brown */
+    --accent-color-1: #a1887f;      /* Light Brown */
+    --accent-color-2: #5d4037;      /* Darker Brown */
+    --neutral-light: #f5f5f5;      /* Very Light Gray */
+    --neutral-dark: #bcaaa4;       /* Light Brown/Gray */
+    --minimalist-brown: #efebe9;    /* Minimalist Light Brown */
+    --section-bg-products: #f3e5f5; /* Light Lavender for Products */
+    --accent-color-green: #8fbc8f;   /* Muted Sea Green (New Accent) */
+}
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            background-color: var(--minimalist-brown);
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--secondary-color) !important;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-color-1) !important;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(109, 76, 65, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+
+        .hero {
+            background-color: var(--minimalist-brown);
+            min-height: 100vh;
+            /* Use min-height to ensure it's at least the viewport height */
+            display: flex;
+            justify-content: center;
+            /* Center content horizontally */
+            align-items: center;
+            /* Center content vertically */
+            padding-top: 0;
+            /* Remove the top padding, as centering handles vertical alignment */
+        }
+
+        .hero-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                text-align: left;
+                padding: 50px;
+            }
+        }
+
+        .hero h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+        }
+
+        .hero h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+
+        .hero .btn-primary {
+            background-color: var(--accent-color-1);
+            border-color: var(--accent-color-1);
+            color: var(--primary-color);
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        }
+
+        .hero .btn-primary:hover {
+            background-color: var(--accent-color-2);
+            border-color: var(--accent-color-2);
+            color: white;
+        }
+
+        .hero-image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-image-container {
+                margin-top: 0;
+                justify-content: flex-end;
+            }
+        }
+
+        .hero-image {
+            background-color: #d7ccc8;
+            max-height: 300px;
+            max-width: 300px;
+            border-radius: 150px;
+            box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-content .btn {
+            z-index: 1000;
+        }
+
+        #products {
+            background-color: var(--section-bg-products);
+            /* Light Lavender */
+            padding: 60px 20px;
+        }
+
+        .product-list {
+            max-width: 960px;
+            margin: 40px auto;
+        }
+
+        .product-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            /* White cards for product items */
+        }
+
+        @media (min-width: 768px) {
+            .product-item {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .product-item:nth-child(even) {
+                flex-direction: row-reverse;
+                text-align: right;
+            }
+        }
+
+        .product-image-container {
+            background-color: #d7ccc8;
+            max-height: 300px;
+            max-width: 300px;
+            border-radius: 150px;
+            box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            text-align: center;
+            overflow: hidden;
+            /* Important to keep content within the rounded border */
+        }
+
+        .product-image-container img {
+            max-width: 100%;
+            /* Ensure the image doesn't exceed the container's width */
+            max-height: 100%;
+            /* Ensure the image doesn't exceed the container's height */
+            object-fit: contain;
+            /* Scales the image down to fit within the container, preserving aspect ratio */
+            /* object-fit: cover; /* Alternatively, fills the container, potentially cropping the image */
+        }
+
+        @media (min-width: 768px) {
+            .product-image-container {
+                margin: 0 30px 0 0;
+            }
+
+            .product-item:nth-child(even) .product-image-container {
+                margin: 0 0 0 30px;
+            }
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .product-details p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .product-details .btn-outline-secondary {
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            display: inline-block;
+        }
+
+        .product-details .btn-outline-secondary:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        #about {
+            background-color: var(--minimalist-brown);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        #about h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .full-height-footer {
+            background-color: var(--neutral-dark);
+            color: var(--primary-color);
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .full-height-footer a {
+            color: var(--accent-color-1);
+            text-decoration: none;
+            transition: text-decoration 0.3s ease-in-out;
+        }
+
+        .full-height-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Alfresco Cafe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-6 hero-content">
+                <h1 class="fw-bold">Welcome to Alfresco Cafe!</h1>
+                <h3>Kapeng pang masa!</h3>
+                <button class="btn btn-primary btn-lg" onclick="scrollToProducts()">View Products</button>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center hero-image-container">
+                <div class="hero-image">
+                    <img src="src\coffeehero.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="products">
+        <div class="container product-list">
+            <div class="product-item">
+                <div class="product-image-container">
+                    <img src="src\expresso.png" alt="">
+                </div>
+                <div class="product-details">
+                    <h3>Espresso</h3>
+                    <p>A concentrated coffee beverage brewed by forcing hot water under high pressure through
+                        finely-ground coffee beans. Known for its rich flavor and crema.</p>
+                    <a href="#" class="btn btn-outline-secondary">Learn More</a>
+                </div>
+            </div>
+
+            <div class="product-item">
+                <div class="product-image-container">
+                    <img src="src\java coffee.png" alt="">
+                </div>
+                <div class="product-details">
+                    <h3>Dark Java</h3>
+                    <p>A robust and intense coffee blend, characterized by its deep, dark roasted flavor profile with
+                        hints of bitterness and a bold aroma. Perfect for those who prefer a strong coffee experience.
+                    </p>
+                    <a href="#" class="btn btn-outline-secondary">View Details</a>
+                </div>
+            </div>
+
+            <div class="product-item">
+                <div class="product-image-container">
+                    <img src="src\capucinno.png" alt="">
+                </div>
+                <div class="product-details">
+                    <h3>Cappuccino</h3>
+                    <p>A classic Italian coffee drink made with equal parts double espresso, hot milk, and steamed milk
+                        foam. Offers a balanced and creamy texture with a rich coffee taste.</p>
+                    <a href="#" class="btn btn-outline-secondary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>This is the about us section. Tell your users about your company or yourself.</p>
+            <p>More information can go here...</p>
+        </div>
+    </section>
+
+    <footer class="full-height-footer mt-auto">
+        <p>&copy; 2025 My Website. All rights reserved. <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        function scrollToProducts() {
+            const productsSection = document.getElementById('products');
+            productsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
