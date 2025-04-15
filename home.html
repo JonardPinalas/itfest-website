@@ -1,95 +1,136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Daily Crumb</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home Nav with Dropdown</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero {
+            background-color: #e9ecef;
+            padding-top: 200px;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            height: 100vh; /* Make content sections the same height as hero */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+        }
+
+        .full-height-footer {
+            background-color: #f8f9fa;
+            color: #212529;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">The Daily Crumb</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Our Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-primary ml-lg-2" href="#">Order Now</a>
-                    </li>
-                </ul>
+    <div class="navbar-container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">My Website</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#products">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                More
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
+        </nav>
+    </div>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Our Awesome Site!</h1>
+            <p class="lead">Discover amazing products and learn more about us.</p>
+            <button class="btn btn-primary btn-lg" onclick="scrollToProducts()">View Products</button>
         </div>
-    </nav>
-
-    <section class="jumbotron bg-white text-center py-5">
+    </div>
+    <section id="products" class="content-section bg-light">
         <div class="container">
-            <h1 class="display-4">Savor the Freshness of Handcrafted Delights</h1>
-            <p class="lead">Artisanal breads and pastries baked with passion and the finest ingredients.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Explore Our Treats</a>
-            </div>
-    </section>
-
-    <section class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Our Delicious Offerings</h2>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <img src="placeholder-bread.jpg" class="card-img-top" alt="Artisan Bread">
-                        <div class="card-body">
-                            <h5 class="card-title">Artisan Breads</h5>
-                            <p class="card-text">Discover our range of handcrafted sourdough, baguettes, and more.</p>
-                            <a href="#" class="btn btn-sm btn-outline-secondary">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <img src="placeholder-pastry.jpg" class="card-img-top" alt="Delicious Pastries">
-                        <div class="card-body">
-                            <h5 class="card-title">Delicious Pastries</h5>
-                            <p class="card-text">Indulge in our flaky croissants, sweet danishes, and delicate tarts.</p>
-                            <a href="#" class="btn btn-sm btn-outline-secondary">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <img src="placeholder-cake.jpg" class="card-img-top" alt="Custom Cakes">
-                        <div class="card-body">
-                            <h5 class="card-title">Custom Cakes</h5>
-                            <p class="card-text">Celebrate special occasions with our beautifully designed custom cakes.</p>
-                            <a href="#" class="btn btn-sm btn-outline-secondary">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-                </div>
+            <h2>Products</h2>
+            <p>This is the products section. You can list your products here.</p>
+            <ul>
+                <li>Product 1</li>
+                <li>Product 2</li>
+                <li>Product 3</li>
+            </ul>
         </div>
     </section>
 
-    <footer class="bg-light py-3 text-center">
+    <section id="about" class="content-section bg-white">
         <div class="container">
-            <p>&copy; 2025 The Daily Crumb. All rights reserved.</p>
-            </div>
+            <h2>About Us</h2>
+            <p>This is the about us section. Tell your users about your company or yourself.</p>
+            <p>More information can go here...</p>
+        </div>
+    </section>
+
+    <footer class="full-height-footer mt-auto">
+        <p>&copy; 2025 My Website. All rights reserved.</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script> </body>
+    <script>
+        function scrollToProducts() {
+            const productsSection = document.getElementById('products');
+            productsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
