@@ -9,19 +9,38 @@
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+        <script
+    src="https://cdn.jsdelivr.net/npm/boCCQotstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+</body>
     <style>
-       :root {
-    --primary-color: #4e342e;       /* Dark Brown */
-    --secondary-color: #6d4c41;     /* Medium Brown */
-    --accent-color-1: #a1887f;      /* Light Brown */
-    --accent-color-2: #5d4037;      /* Darker Brown */
-    --neutral-light: #f5f5f5;      /* Very Light Gray */
-    --neutral-dark: #bcaaa4;       /* Light Brown/Gray */
-    --minimalist-brown: #efebe9;    /* Minimalist Light Brown */
-    --section-bg-products: #f3e5f5; /* Light Lavender for Products */
-    --accent-color-green: #8fbc8f;   /* Muted Sea Green (New Accent) */
-}
+        :root {
+            --primary-color: #4e342e;
+            /* Dark Brown */
+            --secondary-color: #6d4c41;
+            /* Medium Brown */
+            --accent-color-1: #a1887f;
+            /* Light Brown */
+            --accent-color-2: #5d4037;
+            /* Darker Brown */
+            --neutral-light: #f5f5f5;
+            /* Very Light Gray */
+            --neutral-dark: #bcaaa4;
+            /* Light Brown/Gray */
+            --minimalist-brown: #efebe9;
+            /* Minimalist Light Brown */
+            --section-bg-products: #f3e5f5;
+            /* Light Lavender for Products */
+            --accent-color-green: #8fbc8f;
+            /* Muted Sea Green (New Accent) */
+            --moving-text-bg: rgba(68, 50, 44, 0.7);
+            /* Semi-transparent dark brown for moving text */
+            --moving-text-color: var(--neutral-light);
+        }
 
         body {
             display: flex;
@@ -31,6 +50,8 @@
             font-family: 'Poppins', sans-serif;
             color: var(--secondary-color);
             background-color: var(--minimalist-brown);
+            overflow-x: hidden;
+            /* Prevent horizontal scrollbar due to moving text */
         }
 
         .navbar {
@@ -48,12 +69,14 @@
         .navbar-brand {
             color: var(--primary-color) !important;
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            /* Slightly larger brand */
         }
 
         .navbar-nav .nav-link {
             color: var(--secondary-color) !important;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.25rem;
+            /* Slightly more padding */
             transition: color 0.3s ease-in-out;
         }
 
@@ -74,23 +97,69 @@
             box-shadow: none;
         }
 
-
         .hero {
             background-color: var(--minimalist-brown);
             min-height: 100vh;
-            /* Use min-height to ensure it's at least the viewport height */
+            /* Adjust height */
             display: flex;
             justify-content: center;
-            /* Center content horizontally */
             align-items: center;
-            /* Center content vertically */
             padding-top: 0;
-            /* Remove the top padding, as centering handles vertical alignment */
+            position: relative;
+            /* For absolute positioning of moving text */
+            overflow: hidden;
+            /* Clip the moving text within the hero bounds */
+        }
+
+        .moving-text-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            /* Make it wider than the container for movement */
+            height: 100%;
+            background-color: var(--moving-text-bg);
+            color: var(--moving-text-color);
+            font-size: 4rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-around;
+            /* Distribute text evenly */    
+            align-items: center;
+            white-space: nowrap;
+            animation: moveText 20s linear infinite alternate;
+            /* Combined animation */
+            opacity: 0.1;
+            /* Subtle effect */
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(0%);
+            }
+
+            33% {
+                transform: translateX(-50%);
+            }
+
+            /* Move left */
+            66% {
+                transform: translateX(0%);
+            }
+
+            /* Move right */
+            100% {
+                transform: translateX(-50%);
+            }
+
+            /* Move left again (for alternate) */
         }
 
         .hero-content {
             padding: 20px;
             text-align: center;
+            z-index: 2;
+            /* Ensure content is above moving text */
         }
 
         @media (min-width: 768px) {
@@ -102,18 +171,28 @@
 
         .hero h1 {
             color: var(--primary-color);
-            font-size: 2.5rem;
+            font-size: 3rem;
+            /* Larger heading */
+            font-weight: 700;
+            margin-bottom: 15px;
         }
 
         .hero h3 {
             color: var(--secondary-color);
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            /* Slightly larger subheading */
+            font-weight: 500;
+            margin-bottom: 25px;
         }
 
         .hero .btn-primary {
             background-color: var(--accent-color-1);
             border-color: var(--accent-color-1);
-            color: var(--primary-color);
+            color: var(--neutral-light);
+            /* Light text on primary button */
+            font-weight: 500;
+            padding: 12px 30px;
+            border-radius: 8px;
             transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
         }
 
@@ -126,7 +205,7 @@
         .hero-image-container {
             display: flex;
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         @media (min-width: 768px) {
@@ -150,6 +229,7 @@
             text-align: center;
             z-index: 1;
         }
+       
 
         .hero-content .btn {
             z-index: 1000;
@@ -258,21 +338,32 @@
 
         #about {
             background-color: var(--minimalist-brown);
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
         }
 
         #about h2 {
             color: var(--primary-color);
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        #about p {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 30px;
         }
 
         .full-height-footer {
             background-color: var(--neutral-dark);
             color: var(--primary-color);
-            padding: 20px;
+            padding: 30px;
             text-align: center;
             margin-top: auto;
+            font-size: 0.9rem;
         }
 
         .full-height-footer a {
@@ -313,15 +404,21 @@
     </nav>
 
     <div class="hero container-fluid">
+        <div class="moving-text-background">
+            <span>Alfresco Coffee</span>
+            <span>Alfresco Coffee</span>
+            <span>Alfresco Coffee</span>
+            <span>Alfresco Coffee</span>
+        </div>
         <div class="row align-items-center">
             <div class="col-md-6 hero-content">
-                <h1 class="fw-bold">Welcome to Alfresco Cafe!</h1>
-                <h3>Kapeng pang masa!</h3>
-                <button class="btn btn-primary btn-lg" onclick="scrollToProducts()">View Products</button>
+                <h1 class="fw-bold">Experience the Richness</h1>
+                <h3>Savor the Moment with Our Exquisite Coffee</h3>
+                <button class="btn btn-primary btn-lg" onclick="scrollToProducts()">View Our Blends</button>
             </div>
             <div class="col-md-6 d-flex justify-content-center hero-image-container">
                 <div class="hero-image">
-                    <img src="src\coffeehero.png" alt="">
+                    <img src="src\coffeehero.png" alt="Delicious Coffee">
                 </div>
             </div>
         </div>
@@ -331,7 +428,7 @@
         <div class="container product-list">
             <div class="product-item">
                 <div class="product-image-container">
-                    <img src="src\expresso.png" alt="">
+                    <img src="src\expresso.png" alt="Espresso">
                 </div>
                 <div class="product-details">
                     <h3>Espresso</h3>
@@ -343,7 +440,7 @@
 
             <div class="product-item">
                 <div class="product-image-container">
-                    <img src="src\java coffee.png" alt="">
+                    <img src="src\java coffee.png" alt="Dark Java">
                 </div>
                 <div class="product-details">
                     <h3>Dark Java</h3>
@@ -356,7 +453,7 @@
 
             <div class="product-item">
                 <div class="product-image-container">
-                    <img src="src\capucinno.png" alt="">
+                    <img src="src\capucinno.png" alt="Cappuccino">
                 </div>
                 <div class="product-details">
                     <h3>Cappuccino</h3>
@@ -370,14 +467,20 @@
 
     <section id="about">
         <div class="container">
-            <h2>About Us</h2>
-            <p>This is the about us section. Tell your users about your company or yourself.</p>
-            <p>More information can go here...</p>
+            <h2>Our Story</h2>
+            <p>At Alfresco Cafe, we are passionate about coffee. From sourcing the finest beans to the art of brewing,
+                we
+                believe every cup should be an experience. Founded with a love for community and great coffee, we strive
+                to create a welcoming space where people can connect and enjoy exceptional brews.</p>
+            <p>Our commitment extends beyond the cup. We are dedicated to sustainable practices and ethical sourcing,
+                ensuring that our coffee not only tastes good but also does good.</p>
         </div>
     </section>
 
     <footer class="full-height-footer mt-auto">
-        <p>&copy; 2025 My Website. All rights reserved. <a href="#">Privacy Policy</a></p>
+        <p>&copy; 2025 Alfresco Cafe. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of
+                Service</a>
+        </p>
     </footer>
 
     <script>
@@ -387,7 +490,8 @@
         }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    <script
+        src="[https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js](https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js)"
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
         crossorigin="anonymous"></script>
 </body>
